@@ -7,11 +7,27 @@
   }
   
   body {
-    background-color: #ffdde0;
+    background-image: url('/Randon-Quizz/imagens/dragao.jpeg');
+    background-size: cover;
+    background-position: center;
     padding: 30px;
-    
-    
+    margin: 0; /* Remova qualquer margem padrão */
+    width: 100vw; /* Defina a largura para ocupar toda a largura da viewport */
+    height: 100vh; /* Defina a altura para ocupar toda a altura da viewport */
+    position: relative; /* Necessário para o posicionamento do overlay */
   }
+  
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.5); /* Cor de fundo com transparência */
+    z-index: -1; /* Coloca o overlay atrás de todo o conteúdo */
+  }
+  
   
   .start-screen,
   .score-container {
@@ -33,9 +49,9 @@
   
   #start-button,
   #restart {
-    font-size: 1.3em;
-    padding: 0.2em 1.8em;
-    border-radius: 0.2em;
+    font-size: 1.5em;
+    padding: 1.5em 1.8em;
+    border-radius: 2em;
   }
   
   #restart {
