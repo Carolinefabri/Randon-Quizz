@@ -1,4 +1,4 @@
-//References
+// References
 let timeLeft = document.querySelector(".time-left");
 let quizContainer = document.getElementById("container");
 let nextBtn = document.getElementById("next-button");
@@ -14,180 +14,178 @@ let scoreCount = 0;
 let count = 15;
 let countdown;
 
-//Questions and Options array
-
+// Questions and Options array
 const quizArray = [
     {
-      id: "0",
-      question: "Quantos jogadores compõem uma equipe de quadribol padrão?",
-      options: ["Cinco", "Seis", "Sete", "Oito"],
-      correct: "Sete",
+        id: "0",
+        question: "Quantos jogadores compõem uma equipe de quadribol padrão?",
+        options: ["Cinco", "Seis", "Sete", "Oito"],
+        correct: "Sete",
     },
     {
-      id: "1",
-      question: "Qual é o feitiço usado para desarmar um oponente?",
-      options: ["Avada Kedavra", "Wingardium Leviosa", "Expelliarmus", "Lumos"],
-      correct: "Expelliarmus",
+        id: "1",
+        question: "Qual é o feitiço usado para desarmar um oponente?",
+        options: ["Avada Kedavra", "Wingardium Leviosa", "Expelliarmus", "Lumos"],
+        correct: "Expelliarmus",
     },
     {
-      id: "2",
-      question: "Qual é a casa em Hogwarts cujo fantasma é Nick-Quase-Sem-Cabeça?",
-      options: ["Grifinória", "Corvinal", "Lufa-Lufa", "Sonserina"],
-      correct: "Sonserina",
+        id: "2",
+        question: "Qual é a casa em Hogwarts cujo fantasma é Nick-Quase-Sem-Cabeça?",
+        options: ["Grifinória", "Corvinal", "Lufa-Lufa", "Sonserina"],
+        correct: "Grifinória",
     },
     {
-      id: "3",
-      question: "Qual é o feitiço usado para criar uma barreira protetora invisível ao redor de um local?",
-      options: ["Protego Totalum", "Fianto Duri", "Impervius", "Muffliato"],
-      correct: "Protego Totalum",
+        id: "3",
+        question: "Qual é o feitiço usado para criar uma barreira protetora invisível ao redor de um local?",
+        options: ["Protego Totalum", "Fianto Duri", "Impervius", "Muffliato"],
+        correct: "Protego Totalum",
     },
     {
-      id: "4",
-      question: "Qual é o feitiço que Voldemort usou para abrir a câmara secreta em Hogwarts?",
-      options: ["Sectumsempra", "Serpensortia", "Alohomora", "Parseltongue"],
-      correct: "Serpensortia",
+        id: "4",
+        question: "Qual é o feitiço que Voldemort usou para abrir a câmara secreta em Hogwarts?",
+        options: ["Sectumsempra", "Serpensortia", "Alohomora", "Parseltongue"],
+        correct: "Serpensortia",
     },
     {
-      id: "5",
-      question: "Qual é o feitiço usado para transformar objetos em animais?",
-      options: ["Avifors", "Ferula", "Reparo", "Avis"],
-      correct: "Avis",
+        id: "5",
+        question: "Qual é o feitiço usado para transformar objetos em animais?",
+        options: ["Avifors", "Ferula", "Reparo", "Avis"],
+        correct: "Avis",
     },
     {
-      id: "6",
-      question: "Qual é o feitiço usado para remover a memória de alguém de forma temporária?",
-      options: ["Obliviate", "Riddikulus", "Confundus", "Oblitus"],
-      correct: "Confundus",
+        id: "6",
+        question: "Qual é o feitiço usado para remover a memória de alguém de forma temporária?",
+        options: ["Obliviate", "Riddikulus", "Confundus", "Oblitus"],
+        correct: "Obliviate",
     },
-  ];
-  
+];
 
-//Restart Quiz
+// Restart Quiz
 restart.addEventListener("click", () => {
     initial(); // Reinicia o quiz
     scoreContainer.classList.add("hide"); // Esconde o contêiner de pontuação
     startScreen.classList.remove("hide"); // Mostra a tela inicial
-  });
-  
+});
 
-//Next Button
-nextBtn.addEventListener(
-  "click",
-  (displayNext = () => {
-    //increment questionCount
+// Next Button
+nextBtn.addEventListener("click", () => {
+    // increment questionCount
     questionCount += 1;
-    //if last question
+    // if last question
     if (questionCount == quizArray.length) {
-      //hide question container and display score
-      displayContainer.classList.add("hide");
-      scoreContainer.classList.remove("hide");
-      //user score
-      userScore.innerHTML =
-        "Your score is " + scoreCount + " out of " + questionCount;
+        // hide question container and display score
+        displayContainer.classList.add("hide");
+        scoreContainer.classList.remove("hide");
+        // Calculate percentage
+        let percentage = (scoreCount / questionCount) * 100;
+        // user score
+        userScore.innerHTML =
+            "Sua pontuação é " + scoreCount + " de " + questionCount + ' = ' +
+            percentage.toFixed(2) + "%";
     } else {
-      //display questionCount
-      countOfQuestion.innerHTML =
-        questionCount + 1 + " of " + quizArray.length + " Question";
-      //display quiz
-      quizDisplay(questionCount);
-      count = 15;
-      clearInterval(countdown);
-      timerDisplay();
+        // display questionCount
+        countOfQuestion.innerHTML =
+            questionCount + 1 + " of " + quizArray.length + " Question";
+        // display quiz
+        quizDisplay(questionCount);
+        count = 15;
+        clearInterval(countdown);
+        timerDisplay();
     }
-  })
-);
+});
 
-//Timer
+// Timer
 const timerDisplay = () => {
-  countdown = setInterval(() => {
-    count--;
-    timeLeft.innerHTML = `${count}s`;
-    if (count == 0) {
-      clearInterval(countdown);
-      displayNext();
-    }
-  }, 1000);
+    countdown = setInterval(() => {
+        count--;
+        timeLeft.innerHTML = `${count}s`;
+        if (count == 0) {
+            clearInterval(countdown);
+            displayNext();
+        }
+    }, 1000);
 };
 
-//Display quiz
+// Display quiz
 const quizDisplay = (questionCount) => {
-  let quizCards = document.querySelectorAll(".container-mid");
-  //Hide other cards
-  quizCards.forEach((card) => {
-    card.classList.add("hide");
-  });
-  //display current question card
-  quizCards[questionCount].classList.remove("hide");
+    let quizCards = document.querySelectorAll(".container-mid");
+    // Hide other cards
+    quizCards.forEach((card) => {
+        card.classList.add("hide");
+    });
+    // display current question card
+    quizCards[questionCount].classList.remove("hide");
 };
 
-//Quiz Creation
+// Quiz Creation
 function quizCreator() {
-  //randomly sort questions
-  quizArray.sort(() => Math.random() - 0.5);
-  //generate quiz
-  for (let i of quizArray) {
-    //randomly sort options
-    i.options.sort(() => Math.random() - 0.5);
-    //quiz card creation
-    let div = document.createElement("div");
-    div.classList.add("container-mid", "hide");
-    //question number
-    countOfQuestion.innerHTML = 1 + " of " + quizArray.length + " Question";
-    //question
-    let question_DIV = document.createElement("p");
-    question_DIV.classList.add("question");
-    question_DIV.innerHTML = i.question;
-    div.appendChild(question_DIV);
-    //options
-    div.innerHTML += `
-    <button class="option-div" onclick="checker(this)">${i.options[0]}</button>
-     <button class="option-div" onclick="checker(this)">${i.options[1]}</button>
-      <button class="option-div" onclick="checker(this)">${i.options[2]}</button>
-       <button class="option-div" onclick="checker(this)">${i.options[3]}</button>
-    `;
-    quizContainer.appendChild(div);
-  }
+    // randomly sort questions
+    quizArray.sort(() => Math.random() - 0.5);
+    // generate quiz
+    for (let i of quizArray) {
+        // randomly sort options
+        i.options.sort(() => Math.random() - 0.5);
+        // quiz card creation
+        let div = document.createElement("div");
+        div.classList.add("container-mid", "hide");
+        // question number
+        countOfQuestion.innerHTML = 1 + " of " + quizArray.length + " Question";
+        // question
+        let question_DIV = document.createElement("p");
+        question_DIV.classList.add("question");
+        question_DIV.innerHTML = i.question;
+        div.appendChild(question_DIV);
+        // options
+        div.innerHTML += `
+        <button class="option-div" onclick="checker(this)">${i.options[0]}</button>
+        <button class="option-div" onclick="checker(this)">${i.options[1]}</button>
+        <button class="option-div" onclick="checker(this)">${i.options[2]}</button>
+        <button class="option-div" onclick="checker(this)">${i.options[3]}</button>
+        `;
+        quizContainer.appendChild(div);
+    }
 }
 
-//Checker Function to check if option is correct or not
+// Checker Function to check if option is correct or not
 function checker(userOption) {
-  let userSolution = userOption.innerText;
-  let question =
-    document.getElementsByClassName("container-mid")[questionCount];
-  let options = question.querySelectorAll(".option-div");
+    let userSolution = userOption.innerText;
+    let question =
+        document.getElementsByClassName("container-mid")[questionCount];
+    let options = question.querySelectorAll(".option-div");
 
-  //if user clicked answer == correct option stored in object
-  if (userSolution === quizArray[questionCount].correct) {
-    userOption.classList.add("correct");
-    scoreCount++;
-  } else {
-    userOption.classList.add("incorrect");
-    //For marking the correct option
+    // if user clicked answer == correct option stored in object
+    if (userSolution === quizArray[questionCount].correct) {
+        userOption.classList.add("correct");
+        scoreCount++;
+    } else {
+        userOption.classList.add("incorrect");
+        // For marking the correct option
+        options.forEach((element) => {
+            if (element.innerText == quizArray[questionCount].correct) {
+                element.classList.add("correct");
+            }
+        });
+    }
+
+    // clear interval(stop timer)
+    clearInterval(countdown);
+    // disable all options
     options.forEach((element) => {
-      if (element.innerText == quizArray[questionCount].correct) {
-        element.classList.add("correct");
-      }
+        element.disabled = true;
     });
-  }
-
-  //clear interval(stop timer)
-  clearInterval(countdown);
-  //disable all options
-  options.forEach((element) => {
-    element.disabled = true;
-  });
 }
 
-//initial setup
+
+// Initial setup
 function initial() {
-  quizContainer.innerHTML = "";
-  questionCount = 0;
-  scoreCount = 0;
-  count = 15;
-  clearInterval(countdown);
-  timerDisplay();
-  quizCreator();
-  quizDisplay(questionCount);
+    quizContainer.innerHTML = "";
+    questionCount = 0;
+    scoreCount = 0;
+    count = 15;
+    clearInterval(countdown);
+    timerDisplay();
+    quizCreator();
+    quizDisplay(questionCount);
 }
 
 //when user click on start button
@@ -202,3 +200,4 @@ window.onload = () => {
   startScreen.classList.remove("hide");
   displayContainer.classList.add("hide");
 };
+

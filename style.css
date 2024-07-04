@@ -6,7 +6,8 @@
   }
   
   body {
-    background-color: #0a69ed;
+    background-color: #ffdde0;
+    
   }
   
   .start-screen,
@@ -123,4 +124,23 @@
     font-size: 1.5em;
     color: #ffffff;
   }
+  table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: white;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+th {
+    background-color: #f2f2f2;
+}
+caption {
+    font-size: 1.2em;
+    margin: 10px;
+}
   
