@@ -1,3 +1,4 @@
+        
 * {
     padding: 0;
     margin: 0;
@@ -7,6 +8,8 @@
   
   body {
     background-color: #ffdde0;
+    padding: 30px;
+    
     
   }
   
@@ -122,7 +125,7 @@
   
   #user-score {
     font-size: 1.5em;
-    color: #ffffff;
+    color: #000000;
   }
   table {
     width: 80%;
@@ -143,4 +146,44 @@ caption {
     font-size: 1.2em;
     margin: 10px;
 }
+
+
+
+.titulo {
+    font-family: 'Harry Potter', sans-serif;
+    font-size: 40px;
+    text-align: center;
+    color: #333; /* Cor do texto */
+    margin-bottom: 20px; /* Espaçamento inferior */
+  }
+
+  .frase{
+    font-variant: small-caps;
+  font-size: 28px;
+  margin-top: -25px;
+  text-align: center;
+  }
   
+  @media screen and (max-width: 600px) {
+    .titulo {
+      font-size: 24px; /* Ajuste o tamanho da fonte para telas muito pequenas */
+    }
+    
+    .frase {
+      font-size: 18px; /* Ajuste o tamanho da fonte para telas muito pequenas */
+    }
+    
+    #display-container {
+      padding: 1em; /* Reduza ainda mais o padding para telas muito pequenas */
+    }
+    
+    .option-div {
+      font-size: 0.8em; /* Reduza o tamanho da fonte para telas muito pequenas */
+      padding: 0.6em; /* Reduza o padding ainda mais para telas muito pequenas */
+    }
+    
+    #next-button {
+      font-size: 0.9em; /* Reduza o tamanho da fonte para telas muito pequenas */
+      padding: 0.6em 1.2em; /* Reduza o padding para telas muito pequenas */
+    }
+  }

@@ -195,6 +195,11 @@ startButton.addEventListener("click", () => {
   initial();
 });
 
+function finalizarQuiz() {
+    // Esconde a frase após o término do quiz
+    document.querySelector('.frase').style.display = 'none';
+  }
+  
 //hide quiz and display start screen
 window.onload = () => {
   startScreen.classList.remove("hide");
