@@ -40,6 +40,8 @@
     align-items: center;
     justify-content: center;
   }
+
+  
   
   button {
     border: none;
@@ -144,26 +146,35 @@
     color: #000000;
   }
   table {
-    width: 80%;
+    width: 100%; /* Alterado para ocupar toda a largura disponível */
+    max-width: 600px; /* Definido um máximo de largura para telas menores */
     margin: 20px auto;
     border-collapse: collapse;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     background-color: white;
 }
+
 th, td {
-    padding: 10px;
+    padding: 8px; /* Reduzido o padding das células */
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
+
 th {
     background-color: #f2f2f2;
 }
-caption {
-    font-size: 1.2em;
-    margin: 10px;
+@media screen and (max-width: 600px) {
+    table {
+        width: 90%; /* Ajustado para ocupar 90% da largura em telas menores */
+        max-width: none; /* Removido o limite máximo de largura */
+    }
+    
+    th, td {
+        padding: 6px; /* Reduzido ainda mais o padding das células para telas menores */
+    }
+    
+   
 }
-
-
 
 .titulo {
     font-family: 'Harry Potter', sans-serif;
